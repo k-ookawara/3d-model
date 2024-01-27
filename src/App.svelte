@@ -4,8 +4,9 @@
     import {OrbitControls} from 'three/addons/controls/OrbitControls.js';
     import {GLTFLoader} from 'three/addons/loaders/GLTFLoader.js';
     import Modal from "./lib/Modal.svelte";
+    let showModal = false;
+    let meshName = null;
     onMount(async () => {
-        let showModal = false;
 
         const scene = new THREE.Scene();
         const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
@@ -47,6 +48,8 @@
             if (intersects.length > 0) {
                 console.log('Object clicked:', intersects[0].object);
                 console.log(intersects[0].object.name);
+                showModal = true;
+                meshName = intersects[0].object.name;
             }
         }
 
@@ -62,5 +65,8 @@
     });
 </script>
 <div id="canvas"></div>
+<Modal bind:showModal>
+    <div slot="mesh-name">{meshName}</div>
+</Modal>
 <style>
 </style>
