@@ -22,7 +22,7 @@
         scene.add(directionalLight);
 
         const loader = new GLTFLoader();
-        loader.load('http://localhost:5173/apple.glb', function (gltf) {
+        loader.load('apple.glb', function (gltf) {
             scene.add(gltf.scene);
         }, undefined, function (error) {
             console.error(error);
